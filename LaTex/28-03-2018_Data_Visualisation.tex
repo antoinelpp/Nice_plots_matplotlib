@@ -1,0 +1,243 @@
+\documentclass[sans, aspectratio=169]{beamer}
+%\usepackage{eulervm}
+\usepackage[scaled ]{helvet}
+\usepackage[utf8]{inputenc}
+\usepackage{multimedia}
+\usepackage{multirow}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{verbatim}
+
+\usepackage{smartdiagram}
+
+\title{
+\textbf{{\LARGE Data Visualization 201}}\\
+Advanced concepts \\ using OpenSource software
+}
+
+\date{LPP- 28/03/2018}
+\author{\underline{A. Tavant}}
+
+%\usetheme{LPP}
+\usepackage{template/beamerthemeLPP}
+\setbeamertemplate{footline}[frame number]
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Introduction} 
+	\framesubtitle{Objectives and reminding} 
+
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+
+\smartdiagramset{back arrow disabled=true,
+text width=0.5\linewidth,
+module minimum width=2.5cm}
+\smartdiagram[flow diagram:vertical]{What's the message,
+ Who is the reader, What's the data}
+		\end{column}
+		
+		\begin{column}{0.55\linewidth}
+
+		
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame} 
+	\frametitle{Introduction} 
+	\framesubtitle{Objectives and reminding} 
+
+	\begin{columns}
+		\begin{column}{0.55\linewidth}
+		What do we want to look at ?
+			\begin{itemize}
+			\item Electron anomalous axial transport
+			\begin{itemize}
+				\item azimuthal instability \footnotemark[1]
+				\item near-wall conductivity
+			\end{itemize}						
+			\item Role of wall materials \footnotemark[2]
+			\begin{itemize}
+				\item Secondary electron emission
+				\item Dielectric relative permittivity
+			\end{itemize}			
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.45\linewidth}
+		
+		
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{A. Ducrocq, J.C. Adam, A. Héron, G. Laval, Phys. Plasmas, 13, 102111 (2014)}
+	\footnotetext[2]{Goebel \& Katz, { \it Fundamentals of electric propulsion: Ion and Hall thrusters }, Wiley (2008)}
+\end{frame}
+
+
+
+
+
+\begin{frame} 
+	\frametitle{Kinetic simulation} 
+	\framesubtitle{Model Set-up} 
+
+	\begin{columns}
+		\begin{column}{0.45\linewidth}
+		
+		\textbf{Electrostatic}
+		\begin{itemize}
+			\item ${\bf E}$ from Poisson equation
+			\item Imposed ${\bf B}$
+		\end{itemize}
+		\medskip
+		\textbf{Monte-Carlo Collisions}
+		\begin{itemize}
+			\item $e/n$: elastic, excitation, ionization
+			\item $i/n$: elastic \& inelastic scattering
+		\end{itemize}
+		
+		\end{column}
+		
+		\begin{column}{0.55\linewidth}
+		\textbf{Particle In Cell (PIC)}
+		\begin{itemize}
+			\item Magnetized electrons $\rightarrow$ Boris scheme
+			\item Un-magnetized ions $\rightarrow$ Leapfrog scheme
+		\end{itemize}
+		\medskip
+		\textbf{Verified}
+		\begin{itemize}
+			\item Unitary tests
+			\item Benchmarks \footnotemark[1] $^,$ \footnotemark[2]
+		\end{itemize}
+		
+		\end{column}
+		
+	\end{columns}
+	
+   \footnotetext[1]{ M. Turner et al., Phys. Plasmas, 20 (2013)}
+	\footnotetext[2]{J.P. Boeuf, soon to be published.}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Preliminary results} 
+	\framesubtitle{Plasma potential} 
+	\begin{columns}
+		\begin{column}{0.45\linewidth}
+		${\bf (R - \theta)}$ Simulation of the exit plan \\
+		
+		\begin{center}
+		\end{center}
+		\end{column}
+		
+		\begin{column}{0.55\linewidth}
+		\begin{center}
+		
+		\end{center}
+		\end{column}
+		
+	\end{columns}
+	
+		
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Kinetic theory considerations} 
+
+	\begin{columns}
+		\begin{column}{0.45\linewidth}
+		\begin{itemize}
+		\item Electron drift instability
+		\begin{equation}
+		\omega \simeq k v_d \pm \frac{ k c_s}{\sqrt{1 + k^2\lambda_{De}^2}}
+		\end{equation}
+		\item Associated electron transport
+		\item confirmed by 2D PIC for $X_e$ \footnotemark[1]
+		\end{itemize}
+		
+		\end{column}
+		
+		\begin{column}{0.45\linewidth}
+		
+		\begin{align*}
+			\text{PIC:} \qquad& 
+			\mu_{\rm PIC} = \frac{<v_{e,z}>}{E_0} \\
+			\text{Effective:} \footnotemark[2] \qquad&
+			\mu_{\rm eff} = \frac{<n_{e} {\bf E \cdot e_{\theta}}>}{n_e B_0 E_0} \\
+			\text{Saturation:} \footnotemark[2] \qquad&
+			\mu_{\rm sat} = \frac{ \sqrt{T_e / U}}{4 \sqrt{3} B_0 } 
+		\end{align*}
+		
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{ V. Croes et al., Plasma Sources Sci. Tech., 26, 034001 (2017)}
+	\footnotetext[2]{ T. Lafleur, S.D. Baalrud, P. Chabert, Phys. Plasmas, 23, 053502 (2016)}
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Alternative propellants} 
+	\framesubtitle{presentation} 
+		What about the other propellants ?\\
+		$\Rightarrow$ Parametric study with different propellant candidates
+		
+		\begin{itemize}
+     		\item 4 gases: $H_e$, $A_r$, $K_r$ and $X_e$
+			\item real chemistry or $X_e$ chemistry only
+			\item Metallic or dielectric walls
+		\end{itemize}
+			
+		\begin{table}%[!tbp]
+   		\centering
+	 	%\def\arraystretch{1.2} %to make higher array cells
+	\begin{tabular}{| r | c c c c |}
+\hline
+ AMU     &   4.003           & 39.95             &    83.8           &    131.3          \\ \hline
+{\bf Case 1}: Dielectric walls with SEE \:   & \multirow{2}{*}{ $\{\sigma_{He}\}$} & \multirow{2}{*}{$\{\sigma_{Ar}\}$}  & \multirow{2}{*}{$\{\sigma_{Kr}\}$}  & \multirow{2}{*}{$\{\sigma_{Xe}\}$}   \\
+{\bf Case 2}: Metallic walls without SEE &   &   &   &   \\
+{\bf Case 3}: Metallic walls without SEE &  &\multicolumn{2}{c}{$\{\sigma_{Xe}\}$}  &  \\ \hline
+\end{tabular}
+
+\end{table}
+		
+\end{frame}
+
+
+
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~
+%Biblio
+%~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%\begin{frame} 
+%	\frametitle{Title} 
+%	\framesubtitle{subtitle} 
+%
+%	\begin{columns}
+%		\begin{column}{0.45\linewidth}
+%		\end{column}
+%		
+%		\begin{column}{0.45\linewidth}
+%		
+%		\end{column}
+%		
+%	\end{columns}
+%\end{frame}
+
+
+
+
+\end{document}
+

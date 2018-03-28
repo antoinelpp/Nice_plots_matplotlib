@@ -1,0 +1,60 @@
+\mode<presentation>
+
+\definecolor{dblue}{rgb}{0.1, 0.1, 0.6}
+
+\pgfdeclareverticalshading{beamer@titleshade}{0.98*\the\paperwidth}{%
+   color(0cm)=(dblue);
+   color(4.4cm)=(black)}
+
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+  \useasboundingbox (5,-20) rectangle(\the\paperwidth-10,\the\paperheight*0.3);
+%  \fill[color=brown] (0,2) rectangle (\the\paperwidth,\the\paperheight);
+%  \fill[color=orange] (0,0) rectangle(2.95,1.9);
+%  \fill[color=blue] (0,0) rectangle(\the\paperwidth,1.9);
+  \ifnum\thepage>1\relax%
+   \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+   \fi
+  \end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{LPP}[1][]
+{  %hskip-0.75cm% 
+   \begin{tikzpicture}
+     \useasboundingbox (-7,-24) rectangle(0.01*\the\paperwidth,\the\paperheight*0.15);
+     \pgfuseshading{beamer@titleshade}
+     \fill[color=dblue] (-7.85, -2.33) rectangle(0.49*\the\paperwidth,-3.2);
+     {\node[anchor=west, white,font=\bf\Large] at (-7.7,-2.26){\includegraphics[width=0.18\paperwidth]{template/logo_LPP.png}};}
+   %Laboratoire de Physique des Plasmas
+   \end{tikzpicture}
+      
+
+   \vskip-25cm%
+    \begin{beamercolorbox}[wd=15cm,leftskip=3cm,sep=8pt,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+    \end{beamercolorbox}%
+    \vskip2.2cm%
+    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{author}
+      \usebeamerfont{author}\insertauthor%
+    \end{beamercolorbox}
+     \vskip0.2cm%
+    \begin{beamercolorbox}[wd=12cm,leftskip=3cm,#1]{date}
+      \usebeamerfont{author}\insertdate%
+    \end{beamercolorbox}
+    
+    %\includegraphics[width=0.18\paperwidth]{safran.jpg}
+    \begin{tikzpicture}[trim left=2cm]
+    {\node[anchor=west, white,font=\bf\Large] at (0,0.0) {\includegraphics[scale=0.28]{template/safran-engines-01_0.png} };}
+	{\node[anchor=west, white,font=\bf\Large] at (7,0.0){\includegraphics[scale=0.2]{template/label-ANR-bleu-CMJN.png} };}
+    
+    
+    {\node[anchor=center, white,font=\bf\Large] at (10.5,0.0){\includegraphics[scale=0.5]{template/X.png} };}
+    {\node[anchor=east, white,font=\bf\Large] at (16,0.0){\includegraphics[scale=0.25]{template/Sorbone.png} };}
+
+    \end{tikzpicture}
+  \vfill
+}
+
+\mode
+<all>

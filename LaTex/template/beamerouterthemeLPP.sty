@@ -1,0 +1,39 @@
+\mode<presentation>
+
+\defbeamertemplate*{frametitle}{LPP}[1][]
+{
+%\definecolor{dblue}{rgb}{50, 50, 220}
+
+\pgfdeclareverticalshading{beamer@topshade}{2*\the\paperwidth}{%
+   color(0cm)=(dblue);
+   color(2.4cm)=(black)}
+
+%Frame title
+%\vskip0mm%
+  \begin{beamercolorbox}[wd=\the\paperwidth,ht=0cm]{frametitle} 
+  \begin{tikzpicture}
+  \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,2);
+  \pgfuseshading{beamer@topshade}
+%  \useasboundingbox[fill=white](0,0) rectangle(\the\paperwidth,2);
+%\fill[blue] (0,0) rectangle(\the\paperwidth,2);
+
+  %\vskip-0.2mm%
+%  \pgfuseshading{beamer@topshade}
+
+
+   \ifx\insertframesubtitle\@empty%
+      {\node[anchor=west, white,font=\bf\Large] at (0.6,-0.18){\insertframetitle};}
+      \else%
+      {\node[anchor= west, white,font=\bf\Large] at (0.6,0.1){\insertframetitle};%
+       \node[anchor= west, white,font=\large] at (0.6,-0.5){\insertframesubtitle};}%
+      \fi
+      {\node[anchor=west, white,font=\bf\Large] at (0.08,-1.15){\includegraphics[width=0.12\paperwidth]{template/logo_LPP.png}};}
+      
+    
+  \end{tikzpicture}
+    
+  \end{beamercolorbox}
+  \vskip12mm%
+}
+
+\mode<all>
