@@ -11,12 +11,14 @@
 
 \usepackage{smartdiagram}
 
+\usepackage{epigraph}
+
 \title{
 \textbf{{\LARGE Data Visualization 201}}\\
 Advanced concepts \\ using OpenSource software
 }
 
-\date{LPP- 28/03/2018}
+\date{LPP- \today}
 \author{\underline{A. Tavant}}
 
 %\usetheme{LPP}
@@ -28,193 +30,289 @@ Advanced concepts \\ using OpenSource software
 \titlepage
 \end{frame}
 
-\begin{frame} 
-	\frametitle{Introduction} 
-	\framesubtitle{Objectives and reminding} 
-
-	\begin{columns}
-		\begin{column}{0.5\linewidth}
-
-\smartdiagramset{back arrow disabled=true,
-text width=0.5\linewidth,
-module minimum width=2.5cm}
-\smartdiagram[flow diagram:vertical]{What's the message,
- Who is the reader, What's the data}
-		\end{column}
-		
-		\begin{column}{0.55\linewidth}
-
-		
-		\end{column}
-		
-	\end{columns}
-\end{frame}
-
-
-
-\begin{frame} 
-	\frametitle{Introduction} 
-	\framesubtitle{Objectives and reminding} 
-
-	\begin{columns}
-		\begin{column}{0.55\linewidth}
-		What do we want to look at ?
-			\begin{itemize}
-			\item Electron anomalous axial transport
-			\begin{itemize}
-				\item azimuthal instability \footnotemark[1]
-				\item near-wall conductivity
-			\end{itemize}						
-			\item Role of wall materials \footnotemark[2]
-			\begin{itemize}
-				\item Secondary electron emission
-				\item Dielectric relative permittivity
-			\end{itemize}			
-			\end{itemize}
-		\end{column}
-		
-		\begin{column}{0.45\linewidth}
-		
-		
-		\end{column}
-		
-	\end{columns}
-	\footnotetext[1]{A. Ducrocq, J.C. Adam, A. Héron, G. Laval, Phys. Plasmas, 13, 102111 (2014)}
-	\footnotetext[2]{Goebel \& Katz, { \it Fundamentals of electric propulsion: Ion and Hall thrusters }, Wiley (2008)}
-\end{frame}
-
-
-
-
-
-\begin{frame} 
-	\frametitle{Kinetic simulation} 
-	\framesubtitle{Model Set-up} 
-
-	\begin{columns}
-		\begin{column}{0.45\linewidth}
-		
-		\textbf{Electrostatic}
-		\begin{itemize}
-			\item ${\bf E}$ from Poisson equation
-			\item Imposed ${\bf B}$
-		\end{itemize}
-		\medskip
-		\textbf{Monte-Carlo Collisions}
-		\begin{itemize}
-			\item $e/n$: elastic, excitation, ionization
-			\item $i/n$: elastic \& inelastic scattering
-		\end{itemize}
-		
-		\end{column}
-		
-		\begin{column}{0.55\linewidth}
-		\textbf{Particle In Cell (PIC)}
-		\begin{itemize}
-			\item Magnetized electrons $\rightarrow$ Boris scheme
-			\item Un-magnetized ions $\rightarrow$ Leapfrog scheme
-		\end{itemize}
-		\medskip
-		\textbf{Verified}
-		\begin{itemize}
-			\item Unitary tests
-			\item Benchmarks \footnotemark[1] $^,$ \footnotemark[2]
-		\end{itemize}
-		
-		\end{column}
-		
-	\end{columns}
+\begin{frame}{Introduction} 
 	
-   \footnotetext[1]{ M. Turner et al., Phys. Plasmas, 20 (2013)}
-	\footnotetext[2]{J.P. Boeuf, soon to be published.}
+	\epigraph{A picture speaks a thousand words}{\textit{Napoléon 1er}}
+
 \end{frame}
 
+\begin{frame}{Outline} 
+
+	\begin{itemize}
+	\item Introduction : Why plotting ?
+	\item Guidelines to plot {\bf WELL}
+	\item Tutorial: using matplotlib
+	
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Introduction : Why plotting ?} 
+	As scientists, we plot in order to:
+	\begin{itemize}
+	\item Visualize raw data (from experiment or simulation)
+		\begin{itemize}
+		\item<2-> \textbf{systematic} (once/twice a day)
+		\item<2-> need to be \textbf{efficient} 
+		\end{itemize}
+	\item Present results to our supervisor/colleges
+		\begin{itemize}
+		\item<3-> less systematic ($\sim$ once a week)
+		\item<3-> clear and consistent (easy to understand)
+		\end{itemize}
+	\item Present results at conference/ for thesis/ paper
+		\begin{itemize}
+		\item<4-> very well done ->\textbf{ many corrections}
+		\item<4-> Easy to understand by a general public 
+		\end{itemize}
+	\end{itemize}
+	
+	\pause \pause \pause \pause
+	{\bf Hence:} having good tools and work-flow is mandatory to be {\it efficient}
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Introduction : Why plotting ?} 
+
+	\begin{columns}
+	\begin{column}{0.35\linewidth}
+
+		\begin{center}
+		\smartdiagramset{back arrow disabled=true,
+				text width=0.8\linewidth,
+				module minimum width=2.5cm}
+		\smartdiagram[flow diagram:vertical]{produce the data,
+ 				process the data, visualize the data}	
+	    \end{center}
+	\end{column}
+		\pause
+	\begin{column}{0.70\linewidth}
+	\begin{itemize}
+		\item Produce the data
+			\begin{itemize}
+			\item Experiment/ Simulmation
+			\item Takes a lot of time
+			\end{itemize}
+		\item process the data
+			\begin{itemize}
+			\item use whatever tool you prefer (python, matlab, excel...)
+			\item stock and keep both the raw and the processed data 
+			\end{itemize}
+		\item Visualize
+			\begin{itemize}
+			\item Use whatever tool you prefer
+			\item not necessary the same tool as for processing
+			\end{itemize}
+		\end{itemize}
+		
+	\end{column}
+		
+	\end{columns}
+\end{frame}
+
+\begin{frame} 
+	\frametitle{Introduction : Why plotting ?} 
+	\framesubtitle{ My own tools }
+	
+	There is My own tools and work-flow:
+	\begin{itemize}
+	\item Produce data via simulation : takes \textbf{2-5 days} each
+	\item store data in hierarchic format (\textbf{HDF5}, for management of extremely large and complex data collections).
+	\item \textbf{Python} for processing
+	\item \textbf{Matplotlib} (python library) for plotting
+	\begin{itemize}
+		\item \textbf{homemade} library for systematic plots
+		\item generates \textbf{$\sim$25 plots and $\sim$10 movies} automatically for each plots
+		\item dedicated \textbf{scripts} for presentation/paper/reports
+	\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Guidelines to plot {\bf WELL}} 
+
+		\begin{center}
+		Plotting nice figures \textbf{is not magic}.\\
+		\vspace{1cm}
+		There is \textbf{some recipes} to help you.
+		\end{center}
+
+\end{frame}
+
+
+\begin{frame} 
+	\frametitle{Guidelines to plot {\bf WELL}} 
+
+		\begin{center}
+		Questions to ask yourself before even starting:\\
+	\vspace{0.5cm}
+		\smartdiagramset{back arrow disabled=true,
+			text width=0.5\linewidth,
+			module minimum width=2.5cm}
+		\smartdiagram[flow diagram:vertical]{What's the message?, Who is the reader?, What's the data?}
+		
+		\end{center}
+	
+\end{frame}
+
+\begin{frame}{Quiz time} 
+	\begin{center}
+	{\Large \textbf{Quiz time} : Which figure is the best ?}
+	\end{center}
+\end{frame}
 
 \begin{frame}
-	\frametitle{Preliminary results} 
-	\framesubtitle{Plasma potential} 
 	\begin{columns}
-		\begin{column}{0.45\linewidth}
-		${\bf (R - \theta)}$ Simulation of the exit plan \\
-		
-		\begin{center}
-		\end{center}
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_like_antoine.png} 
 		\end{column}
-		
-		\begin{column}{0.55\linewidth}
-		\begin{center}
-		
-		\end{center}
+		\vline
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_hate_Antoine.png} 
 		\end{column}
-		
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_dont_like_Constance.png} 
+		\end{column}
+		\vline
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_like_Constance.png} 
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_love_Charoy.png} 
+		\end{column}
+		\vline
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_hate_charoy.png} 
+		\end{column}
 	\end{columns}
 	
-		
 \end{frame}
 
-\begin{frame} 
-	\frametitle{Kinetic theory considerations} 
-
+\begin{frame}
 	\begin{columns}
-		\begin{column}{0.45\linewidth}
-		\begin{itemize}
-		\item Electron drift instability
-		\begin{equation}
-		\omega \simeq k v_d \pm \frac{ k c_s}{\sqrt{1 + k^2\lambda_{De}^2}}
-		\end{equation}
-		\item Associated electron transport
-		\item confirmed by 2D PIC for $X_e$ \footnotemark[1]
-		\end{itemize}
-		
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/uglyimage2d_pedro.png} 
 		\end{column}
-		
-		\begin{column}{0.45\linewidth}
-		
-		\begin{align*}
-			\text{PIC:} \qquad& 
-			\mu_{\rm PIC} = \frac{<v_{e,z}>}{E_0} \\
-			\text{Effective:} \footnotemark[2] \qquad&
-			\mu_{\rm eff} = \frac{<n_{e} {\bf E \cdot e_{\theta}}>}{n_e B_0 E_0} \\
-			\text{Saturation:} \footnotemark[2] \qquad&
-			\mu_{\rm sat} = \frac{ \sqrt{T_e / U}}{4 \sqrt{3} B_0 } 
-		\end{align*}
-		
+		\vline
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/niceimage2d_pedro.png} 
 		\end{column}
-		
 	\end{columns}
-	\footnotetext[1]{ V. Croes et al., Plasma Sources Sci. Tech., 26, 034001 (2017)}
-	\footnotetext[2]{ T. Lafleur, S.D. Baalrud, P. Chabert, Phys. Plasmas, 23, 053502 (2016)}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_like_Huan.png} 
+		\end{column}
+		\vline
+		\begin{column}{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.8\linewidth]{proposition_from_students/I_dont_like_Huan.png} 
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{frame} 
-	\frametitle{Alternative propellants} 
-	\framesubtitle{presentation} 
-		What about the other propellants ?\\
-		$\Rightarrow$ Parametric study with different propellant candidates
-		
+	\frametitle{Guidelines to plot {\bf WELL}} 
+	\begin{center}
+	\textbf{What} is a good figure; a good plot?
+	\end{center}
+	
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+		\begin{center}
+		Simple to understand
+		\end{center}
 		\begin{itemize}
-     		\item 4 gases: $H_e$, $A_r$, $K_r$ and $X_e$
-			\item real chemistry or $X_e$ chemistry only
-			\item Metallic or dielectric walls
+			\item<2-> simple, not too much information
+			\item<2-> readable: font size and family, quality
+			\item<2-> Good choice of markers, color, etc.
 		\end{itemize}
-			
-		\begin{table}%[!tbp]
-   		\centering
-	 	%\def\arraystretch{1.2} %to make higher array cells
-	\begin{tabular}{| r | c c c c |}
-\hline
- AMU     &   4.003           & 39.95             &    83.8           &    131.3          \\ \hline
-{\bf Case 1}: Dielectric walls with SEE \:   & \multirow{2}{*}{ $\{\sigma_{He}\}$} & \multirow{2}{*}{$\{\sigma_{Ar}\}$}  & \multirow{2}{*}{$\{\sigma_{Kr}\}$}  & \multirow{2}{*}{$\{\sigma_{Xe}\}$}   \\
-{\bf Case 2}: Metallic walls without SEE &   &   &   &   \\
-{\bf Case 3}: Metallic walls without SEE &  &\multicolumn{2}{c}{$\{\sigma_{Xe}\}$}  &  \\ \hline
-\end{tabular}
-
-\end{table}
-		
+		\end{column}
+		\begin{column}{0.5\linewidth}
+		\begin{center}
+		Enjoyable to look at
+		\end{center}
+		\begin{itemize}
+			\item<3-> simple, not too much information
+			\item<3-> readable: font size and family, quality
+			\item<3-> Good choice of markers, color, etc.
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	\vspace{0.5cm}	
+	\pause \pause \pause
+	
+	\begin{center}
+	{\it an {\bf Enjoyable} figure will convey \textbf{more information} !} 
+	\end{center}
 \end{frame}
 
+\begin{frame}
+	\begin{center}
+	Some Rules, not absolute and not exhaustive:\footnotemark \footnotemark \footnotemark
+	\end{center}
+	\begin{columns}
+		\begin{column}{0.5\linewidth}
+		\begin{itemize}
+		\item 2-3 lines max if complex graph
+		\item Think of the black-and-white prints
+		\item Consistent representation 
+		\item Adapt to the Support Medium
+		\item Be concise (save ink)
+		\item Be efficient (script, optimize)
+		\item Check of typos and consistency
+		\end{itemize}
+		\end{column}
+		\begin{column}{0.6\linewidth}
+		\begin{itemize}
+		\item  Do Not Trust the Defaults
+		\item large font size
+		\item Uses a good the font 
+		\item Use vectoriel format (*.eps, *.pdf, *svg)
+		\item Use Color Effectively
+		\item Label axis and use units
+		
+		\end{itemize}
+		\end{column}
+	\end{columns}
+	\footnotetext[1]{Ten Simple Rules for Better Figures, journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833}
+	\footnotetext[2]{Graphical Excellence in Scientific Presentations and Papers, www3.nd.edu/~pkamat/pdf/graphs.pdf}
+	\footnotetext[3]{personal opinion and experience}
+\end{frame}
 
+\begin{frame}{Tutorial}
 
+	\begin{center}
+		Live example of matplotlib tips and tricks
+	\end{center}	
+	
+	\epigraph{Never do a live example}{\textit{everyone}}
+	
+\end{frame}
 
 
 %~~~~~~~~~~~~~~~~~~~~~~~~~
